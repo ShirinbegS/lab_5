@@ -1,21 +1,20 @@
-import matplotlib.pyplot as plt
 import numpy as np
-from math import *
+import matplotlib.pyplot as plt
 
 def f(x):
-    return cos(x+x**3) #задала функцию
+    return np.sin(10 * x)  # Быстро осциллирующая функция
 
-x = np.linspace(-10, 10, 10) #список точек от -3 до 3 (1000 точек)
-y1 = [f(i) for i in x] #список точек функции из варианта
-y2 = [-0.9 for i in x] #касательная в точке 0
+x1 = np.linspace(0, 2 * np.pi, 50)   # Мало точек (50)
+x2 = np.linspace(0, 2 * np.pi, 500)  # Достаточно точек (500)
+x3 = np.linspace(0, 2 * np.pi, 5000) # Очень много точек (5000)
 
-plt.title('Вариант 11') #заголовок
-plt.xlabel('x') #ось абцисс
-plt.ylabel('y') #ось ординат
-plt.grid() #включение сетки
-plt.plot(x, y1, label='(x**2)*(atan(x))') #построение функции
-plt.plot(x, y2, 'r', label='Касательная') #построение касательной
-plt.text(0.785, -0.9, 'точка касания') #аннотация
-plt.text(-6, -0.9, 'точка касания') #аннотация
-plt.legend() #легенда
+plt.figure(figsize=(12, 6))
+plt.plot(x1, f(x1), label='50 точек', marker='o')
+plt.plot(x2, f(x2), label='500 точек')
+plt.plot(x3, f(x3), label='5000 точек', linestyle='--', alpha=0.7)
+plt.title('Влияние количества точек на график')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.legend()
+plt.grid()
 plt.show()
